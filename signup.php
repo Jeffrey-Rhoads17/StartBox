@@ -46,7 +46,7 @@ if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
 }
 
 
-if (valid){
+if ($valid){
     $query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
     $result = pg_query($db_connection, $query);
     header('Location: index.html');
