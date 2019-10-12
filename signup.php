@@ -10,6 +10,6 @@ $zipcode = $_POST['zip'];
 $password = $_POST['password'];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$query = "INSERT INTO sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
+$query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
 $result = pg_query($db_connection, $query);
 ?>
