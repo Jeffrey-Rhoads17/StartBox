@@ -7,38 +7,38 @@ $street_address = $_POST['street'];
 $city = $_POST['city'];
 $state = $_POST['state'];
 $zipcode = $_POST['zip'];
-$password = $_POST['password'];
+$password = $_POST['pass'];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
-    echo 'Valid email given.';
-}else{
-    echo 'Invalid email given.';
-}
+// if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+//     echo 'Valid email given.';
+// }else{
+//     echo 'Invalid email given.';
+// }
 
-if(preg_match("/^([a-zA-Z' ]+)$/",$full_name)){
-    echo 'Valid name given.';
-}else{
-    echo 'Invalid name given.';
-}
+// if(preg_match("/^([a-zA-Z' ]+)$/",$full_name)){
+//     echo 'Valid name given.';
+// }else{
+//     echo 'Invalid name given.';
+// }
 
-if (preg_match('#[0-9]{5}#', $zipcode)){
-    echo 'Valid zip code given.';
-}else{
-    echo 'Invalid zip code given.';
-}
+// if (preg_match('#[0-9]{5}#', $zipcode)){
+//     echo 'Valid zip code given.';
+// }else{
+//     echo 'Invalid zip code given.';
+// }
 
-if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
-    echo 'Valid city given.';
-}else{
-    echo 'Invalid city given.';
-}
+// if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
+//     echo 'Valid city given.';
+// }else{
+//     echo 'Invalid city given.';
+// }
 
-if(preg_match("/^[A-Za-z0-9\-\\,.]+$/",$street_address)) {
-    echo 'Valid street given.';
-}else{
-    echo 'Invalid street given.';
-}
+// if(preg_match("/^[A-Za-z0-9\-\\,.]+$/",$street_address)) {
+//     echo 'Valid street given.';
+// }else{
+//     echo 'Invalid street given.';
+// }
 
 
 
