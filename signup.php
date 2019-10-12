@@ -9,39 +9,56 @@ $state = $_POST['state'];
 $zipcode = $_POST['zip'];
 $password = $_POST['password'];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
+$checkrows = pg_num_rows($check);
+$valid = True;
+if ($checkrows > 0) {
+    echo "account with given email already exists";
 
-if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+} else {
+    if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
     echo 'Valid email given.';
 }else{
+    valid = False;
     echo 'Invalid email given.';
 }
 
 if(preg_match("/^([a-zA-Z' ]+)$/",$full_name)){
     echo 'Valid name given.';
 }else{
+    valid = False;
     echo 'Invalid name given.';
 }
 
 if (preg_match('#[0-9]{5}#', $zipcode)){
     echo 'Valid zip code given.';
 }else{
+    valid = False;
     echo 'Invalid zip code given.';
 }
 
 if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
     echo 'Valid city given.';
 }else{
+    valid = False;
     echo 'Invalid city given.';
 }
 
 if(preg_match("/^[A-Za-z0-9\-\\,.]+$/",$street_address)) {
     echo 'Valid street given.';
 }else{
+    valid = False;
     echo 'Invalid street given.';
 }
 
 
+if (valid){
+    $query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
+    $result = pg_query($db_connection, $query);
+    header('Location: index.html');
+}
 
-$query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
-$result = pg_query($db_connection, $query);
+}
+
+
 ?>
