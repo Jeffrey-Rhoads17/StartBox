@@ -7,7 +7,7 @@ $street_address = $_POST['street'];
 $city = $_POST['city'];
 $state = $_POST['state'];
 $zipcode = $_POST['zip'];
-$password = $_POST['pass'];
+$password = $_POST['password'];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
 $checkrows = pg_num_rows($check);
