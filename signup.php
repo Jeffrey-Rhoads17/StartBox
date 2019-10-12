@@ -12,37 +12,37 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
 $checkrows = pg_num_rows($check);
 $valid = true;
-$message = "";
+
 if ($checkrows > 0) {
-    message += "account with given email already exists \n";
+    echo "account with given email already exists";
 
 } else {
     if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
    
 }else{
     $valid = false;
-    message += "Invalid email given. \n";
+    echo 'Invalid email given.';
 }
 
 if(preg_match("/^([a-zA-Z' ]+)$/",$full_name)){
     
 }else{
     $valid = false;
-    message += "Invalid name given. \n";
+    echo 'Invalid name given.';
 }
 
 if (preg_match('#[0-9]{5}#', $zipcode)){
     
 }else{
     $valid = false;
-    message += "Invalid zip code given. \n";
+    echo 'Invalid zip code given.';
 }
 
 if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
     
 }else{
     $valid = false;
-    message += "Invalid city given. \n";
+    echo 'Invalid city given.';
 }
 
 
@@ -51,8 +51,8 @@ if (valid){
     $result = pg_query($db_connection, $query);
     header('Location: index.html');
 }else {
-
-    header("Location: signup.html?Message=" . urlencode($message));
+    sleep(7);
+    header('Location: signup.html');
 }
 
 }
