@@ -44,13 +44,6 @@ if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
     echo 'Invalid city given.';
 }
 
-if(preg_match("/^[A-Za-z0-9\-\\,.]+$/",$street_address)) {
-    echo 'Valid street given.';
-}else{
-    $valid = false;
-    echo 'Invalid street given.';
-}
-
 
 if ($valid){
     $query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
