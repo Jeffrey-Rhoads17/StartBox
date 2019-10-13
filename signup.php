@@ -60,6 +60,7 @@ if ($valid){
     function phpAlert($msg) {
     echo '<script type="text/javascript">alert("' . $msg . '")</script>';
     }
+    phpAlert($msg);
     sleep(5);
     header('Location: signup.html');
 }
