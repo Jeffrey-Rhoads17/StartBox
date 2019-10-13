@@ -12,7 +12,7 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
 $checkrows = pg_num_rows($check);
 $valid = true;
-$msg = ""
+$msg = "";
 if ($checkrows > 0) {
     $tmp = "account with given email already exists \r\n";
     $msg = $msg.$tmp;
