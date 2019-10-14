@@ -12,59 +12,21 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
 $checkrows = pg_num_rows($check);
 $valid = true;
-$msg = "";
+
 if ($checkrows > 0) {
     $tmp = "account with given email already exists \r\n";
-    $msg = $msg.$tmp;
-    $valid = false;
-} else {
-    if(filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
-   
-}else{
-    $valid = false;
-
-    $tmp = "Invalid email given. \r\n";
-    $msg = $msg.$tmp;
-}
-
-if(preg_match("/^([a-zA-Z' ]+)$/",$full_name)){
     
-}else{
     $valid = false;
-    $tmp = "Invalid name given. \r\n";
-    $msg = $msg.$tmp;
 }
-
-if (preg_match('#[0-9]{5}#', $zipcode)){
-    
-}else{
-    $valid = false;
-    $tmp = "Invalid zip code given.\r\n";
-    $msg = $msg.$tmp;
-}
-
-if(preg_match("/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/",$city)){
-    
-}else{
-    $valid = false;
-    $tmp =  "Invalid city given. \r\n";
-    $msg = $msg.$tmp;
-}
-
 
 if ($valid){
     $query = "INSERT INTO public.sitecustomers VALUES ('$full_name', '$email_address', '$street_address', '$city', '$state', '$zipcode', '$hashed_password')";
     $result = pg_query($db_connection, $query);
     header('Location: index.html');
 }else {
-    function phpAlert($msg) {
-    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-    }
-    phpAlert($msg);
-    sleep(5);
     header('Location: signup.html');
 }
 
-}
+
 
 ?>

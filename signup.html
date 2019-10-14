@@ -138,7 +138,7 @@
 					 City
 					</span>
 					<div class="wrap-input100 rs1 validate-input" data-validate="City is required">
-						<input class="input100" type="text" name="city" placeholder="Enter your City">
+						<input class="input100" type="text" name="city" title="City must not contain any numbers" pattern = "^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" placeholder="Enter your City">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
@@ -209,7 +209,7 @@
 						Zip Code
 					</span>
 					<div class="wrap-input100 rs1 validate-input" data-validate="Zip Code is required">
-						<input class="input100" type="text" name="zip" placeholder="Enter your Zip Code">
+						<input class="input100" type="text" title = "zip code must be 5 digits" pattern = "[0-9]{5}" name="zip" placeholder="Enter your Zip Code">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
