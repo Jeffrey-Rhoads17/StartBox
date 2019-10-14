@@ -24,7 +24,7 @@ if ($valid){
     $result = pg_query($db_connection, $query);
     header('Location: index.html');
 }else {
-    header('Location: signup.html');
+    header('Location: login2.html');
 }
 
 
