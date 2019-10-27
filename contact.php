@@ -1,45 +1,59 @@
+
 <?php
    use PHPMailer\PHPMailer\PHPMailer;
+
+
+/* Exception class. */
+
+require(__DIR__ . '\Exception.php');
+/* The main PHPMailer class. */
+require(__DIR__ . '\PHPMailer.php');
+/* SMTP class, needed if you want to use SMTP. */
+require(__DIR__ . '\SMTP.php');
+     $message = "initial text ";
+    if(isset($_POST["submit"]))
+    {
    $message = " ";
-   include("session.php");
-   require 'vendor/autoload.php';
-   $one = $_REQUEST["firstname"];
-   $one= stripslashes($one);
-   $two = $_REQUEST["lastname"];
-   $two= stripslashes($two);
-   $three = $_REQUEST["email"];
+   $name = $_POST["name"];
+   $name= stripslashes($name);
+   $three = $_POST["email"];
    $three= stripslashes($three);
-   $four = $_REQUEST["subject"];
-   $four = stripslashes($four);
-   $five = $_REQUEST["message"];
+   $five = $_POST["body"];
    $five = stripslashes($five);
-   if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-   {
-     if(isset($_POST["submit"]))
-     {
+   $mesage = "Nothing is working";
+     
+        $message = "this atleast works";
         $mail = new PHPMailer(true);
+        $mail->SMTPOptions = array(
+        'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
         $mail->IsSMTP(); // enable SMTP
         $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
         $mail->SMTPAuth = true; // authentication enabled
-        $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
+        $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
         $mail->Host = "smtp.gmail.com";
-        $mail->Port = 587; // or 587
+        $mail->Port = 465; // or 587
         $mail->IsHTML(true);
-        $mail->Username = "hooscleanin@gmail.com";
-        $mail->Password = "Boby1234";
-        $mail->SetFrom("hooscleanin@gmail.com");
-        $mail->Subject = "$four";
-        $mail->Body = "This message is from $one $two. The message is: $five. The email address to reply is $three";
-        $mail->AddAddress("hooscleanin@gmail.com");
+        $mail->Username = "startbox.2020@gmail.com";
+        $mail->Password = "bums1234";
+        $mail->SetFrom("startbox.2020@gmail.com");
+        $mail->Subject = "New Customer Inquiry";
+        $mail->Body = "This message is from $name. The message is: $five. The email address to reply is $three";
+        $mail->AddAddress("startbox.2020@gmail.com");
         if(!$mail->Send()) 
           {
+            $message = "Failed to Send";
           }
           else
           {
-            $message = "Thank you for contacting us $one $two, we will be getting back to you shortly!";
+            $message = "Thank you for contacting us $name, we will be getting back to you shortly!";
           }
      }
-   }
+   
    
 ?>
 
@@ -56,6 +70,7 @@
   <meta name="description" content="Contact us page">
   
   <title>Contact us</title>
+
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -100,7 +115,7 @@
                         
                         About Us
                     </a>
-                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="contact.html">Contact</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="contact.php">Contact</a></li>
                 </li><li class="nav-item"><a class="nav-link link text-black display-4" href="login.html">Login</a></li>
                 <li class="nav-item"><a class="nav-link link text-black display-4" href="signup.html">Sign Up</a></li>
             </ul>
@@ -121,7 +136,8 @@
             <div class="title col-12 col-md-8">
                 <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-2">
                     Contact Us</h2>
-                
+                    
+                  <h1 class= "align-center mbr-fonts-style m-0 display-5"> <?php echo $message ?> </h1>
                 
                 
             </div>
@@ -204,13 +220,13 @@
                         </h5>
                         <p class="mbr-text align-left mbr-fonts-style display-7">
                             
-                            Email: StartBox@gmail.com
+                            Email: StartBox.2020@gmail.com
                         </p>
                     </div>
                 </div>
                 <div data-form-type="formoid">
                     <!---Formbuilder Form--->
-                    <form action="mail.php" method="POST" class="mbr-form form-with-styler" data-form-title=" Form"><input type="hidden" name="email" data-form-email="true" value="jnnKn/ep5LrfG1+XiB2QI/meobVgqJWazxXWnGZGEmThchQqffk0+LXWDVoQH21LvOL853j5U1bHD2sg0TrHmqMJisSgC/zQMCuzrO3PUt/UB4uQNbW9RKLIofYPDXav">
+                    <form action="" method="POST" class="mbr-form form-with-styler" data-form-title=" Form"><input type="hidden" name="email" data-form-email="true" value="jnnKn/ep5LrfG1+XiB2QI/meobVgqJWazxXWnGZGEmThchQqffk0+LXWDVoQH21LvOL853j5U1bHD2sg0TrHmqMJisSgC/zQMCuzrO3PUt/UB4uQNbW9RKLIofYPDXav">
                         <div class="row">
                             <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
                             <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -229,7 +245,7 @@
                             <div data-for="message" class="col-md-12  form-group">
                                 <textarea name="body" placeholder="Message" data-form-field="Message" class="form-control input display-7" id="message-form4-13"></textarea>
                             </div>
-                            <div class="col-md-12 input-group-btn  mt-2 align-center"><button type="submit" class="btn btn-primary btn-form display-4">SEND MESSAGE</button></div>
+                            <div class="col-md-12 input-group-btn  mt-2 align-center"><button type="submit" name = "submit" class="btn btn-primary btn-form display-4">SEND MESSAGE</button></div>
                         </div>
                     </form><!---Formbuilder Form--->
                 </div>
