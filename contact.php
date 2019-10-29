@@ -5,11 +5,11 @@
 
 /* Exception class. */
 
-require(__DIR__ . '\Exception.php');
+require(__DIR__ . '/Exception.php');
 /* The main PHPMailer class. */
-require(__DIR__ . '\PHPMailer.php');
+require(__DIR__ . '/PHPMailer.php');
 /* SMTP class, needed if you want to use SMTP. */
-require(__DIR__ . '\SMTP.php');
+require(__DIR__ . '/SMTP.php');
      $message = "initial text ";
     if(isset($_POST["submit"]))
     {
