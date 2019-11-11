@@ -1,11 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require(__DIR__ . '\Exception.php');
+require(__DIR__ . '/Exception.php');
 /* The main PHPMailer class. */
-require(__DIR__ . '\PHPMailer.php');
+require(__DIR__ . '/PHPMailer.php');
 /* SMTP class, needed if you want to use SMTP. */
-require(__DIR__ . '\SMTP.php');
+require(__DIR__ . '/SMTP.php');
 
 $db_connection = pg_connect("host=ec2-54-235-92-244.compute-1.amazonaws.com port=5432 dbname=d8ml5c7u4acibm user=jzyjvbcryijgfg password=01a082153a927515cb3d2724ec7a13ee0a2491042a18a45940a8ae7a5dc74b52");
 
