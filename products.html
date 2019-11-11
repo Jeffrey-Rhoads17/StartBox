@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +27,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+    .coupon {
+  border: 5px dotted #bbb; /* Dotted border */
+  width: 80%; 
+  border-radius: 15px; /* Rounded border */
+  margin: 0 auto; /* Center the coupon */
+  max-width: 600px; 
+}
+
+
+.promo {
+  background: #ccc;
+  padding: 3px;
+}
+
+.expire {
+  color: red;
+}
     </style>
   
   
@@ -180,7 +200,21 @@
       </div>
     </div>
   
-   
+    <div class="coupon">
+      <div class="container">
+        <h3>Standard Party Box Sale!</h3>
+      </div>
+      <img src="assets/images/basic_party.jpg" alt="Avatar" style="width:100%;">
+      <div class="container" style="background-color:white">
+        <h2><b>$5 OFF YOUR PURCHASE</b></h2> 
+
+      </div>
+      <div class="container">
+        <p>Use Promo Code: <span class="promo">WAHOOWA</span></p>
+        <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+        <p class="expire">Expires: Dec. 1st, 2019</p>
+      </div>
+    </div>
       
       
       

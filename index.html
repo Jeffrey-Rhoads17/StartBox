@@ -63,9 +63,25 @@
     </nav>
 </section>
 
+
+
+
+   <script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    function plusDivs(n) {
+    showDivs(slideIndex += n);
+     }
+    function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} if (n < 1) {slideIndex = x.length}for
+    (i = 0; i < x.length; i++) {x[i].style.display = "none";}
+    x[slideIndex-1].style.display = "block"; }
+   </script>
+
 <section class="cid-ruNtyUeTOv mbr-fullscreen mbr-parallax-background" id="header2-1">
 
-    
 
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(7, 59, 76);"></div>
 
@@ -88,6 +104,14 @@
         </a>
     </div>
 </section>
+
+<div align="center">
+    <marquee behavior="alternate" bgcolor="#bb3434" direction="left" height:="" 
+    loop="7" scrollamount="1" scrolldelay="1" width="100%">
+    <span style="font-size: 20px;color:#FFFFFF">
+    HOT SALE NOW! Use Promo Code: WAHOOWA to save $5 on your next Standard Party Package!</span></marquee>
+</div>
+
 
 <section class="features1 cid-ruNBDZ0eEF" id="features1-8">
     
