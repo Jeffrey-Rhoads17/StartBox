@@ -9,6 +9,8 @@ require(__DIR__ . '\Exception.php');
 require(__DIR__ . '\PHPMailer.php');
 /* SMTP class, needed if you want to use SMTP. */
 require(__DIR__ . '\SMTP.php');
+
+
 $Name = $_POST['name'];
 $Email = $_POST['email'];
 $Message = $_POST['body'];
