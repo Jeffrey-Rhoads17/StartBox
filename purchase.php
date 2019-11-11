@@ -9,7 +9,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
     // Let them access the "logged in only" pages
 } else {
     // Redirect them to the login page
-    header('Location: index.html');
+     header('Location: login.html');
 }
 ?>
 <!DOCTYPE html>
@@ -153,41 +153,8 @@ if ( isset( $_SESSION['user_id'] ) ) {
 
                         </ul>
                     </div>
-                    
+
                 </div>
-                <form>
-                        <label for="choose">Enter Promo Code</label>
-                        <input id="choose" name="i_like" required pattern="WAHOOWA">
-                        <button data-toggle="modal" data-target="#exampleModal">Submit</button>
-                </form>
-                <!-- Button trigger modal -->
- 
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Promo Code Validated!</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Congratulations! You have successfully activated the promo code. Click the BitPay link below to get your Standard Party Box for $15!
-              <form action="https://test.bitpay.com/checkout" method="post">
-                <input type="hidden" name="action" value="checkout" />
-                <input type="hidden" name="posData" value="" />
-                <input type="hidden" name="data" value="LcMQ+N889ZKtLL7wQHdhcND1c/Doy2qIMGy/S9ax1az++ZnRgrjkPXa9shiO6Wamq9wuarny7NR1HhmbMmibjmcCJ1lK4RURcCcwgyz4NVVoN47Ub3Sqjx3qmX+XoH/HjmTPClB5RvSmambEc3BqMS1cExOnvoqV2YXL5Ank3DtkKsOHXJZLzJmadkkfUWAN+DDsawMmELiYB5jpW01UQe+47QoJu3/KmeLUMviwjro=" />
-                <input type="image" src="https://test.bitpay.com/cdn/en_US/bp-btn-pay-currencies.svg" name="submit" style="width: 210px" alt="BitPay, the easy way to pay with bitcoins.">
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
                 <div>
                     <form action="https://test.bitpay.com/checkout" method="post">
                         <input type="hidden" name="action" value="checkout" />

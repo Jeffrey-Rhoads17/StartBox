@@ -2,7 +2,7 @@
 // Always start this first
 session_start();
 
-$
+
 if ( ! empty( $_POST ) ) {
     if ( isset( $_POST['email'] ) && isset( $_POST['pass'] ) ) {
 
@@ -10,9 +10,9 @@ if ( ! empty( $_POST ) ) {
 		$email_address = $_POST['email'];
 		$password = $_POST['pass'];
 		$check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
-    	$user = pg_fetch_object($check)	
+    	$user = pg_fetch_object($check);	
     	// Verify user password and set $_SESSION
-    	if ( password_verify( $_POST['password'], $user->password ) ) {
+    	if ( password_verify( $_POST['pass'], $user->password ) ) {
     		$_SESSION['user_id'] = $user->ID;
     		header('Location: products.html');
     	}
@@ -110,7 +110,7 @@ if ( ! empty( $_POST ) ) {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form action="login.html" method = "post" class="login100-form validate-form">
+				<form action="login.php" method = "post" class="login100-form validate-form">
 					<span class="login100-form-title p-b-33">
 						Account Login
 					</span>
