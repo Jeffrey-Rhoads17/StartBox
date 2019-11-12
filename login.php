@@ -13,8 +13,8 @@ if ( ! empty( $_POST ) ) {
     	$user = pg_fetch_object($check);	
     	// Verify user password and set $_SESSION
     	if ( password_verify( $_POST['pass'], $user->password ) ) {
-    		$_SESSION['user_id'] = $user->ID;
-    		header('Location: products.html');
+    		$_SESSION['user_id'] = $user->password;
+    		header('Location: products.php');
     	}
     }
 }
@@ -85,17 +85,17 @@ if ( ! empty( $_POST ) ) {
         <div class="menu-logo">
             <div class="navbar-brand">
                 
-                 <span class="navbar-caption-wrap"> <a href = "index.html"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
+                 <span class="navbar-caption-wrap"> <a href = "index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-black display-6" href="index.html">
+                    <a class="nav-link link text-black display-6" href="index.php">
                         
                         Home</a>
                 
                 <li class="nav-item">
-                    <a class="nav-link link text-black display-6" href="about.html">
+                    <a class="nav-link link text-black display-6" href="about.php">
                         
                         About Us
                     </a>

@@ -1,5 +1,8 @@
 
 <?php
+
+session_start();
+
    use PHPMailer\PHPMailer\PHPMailer;
 
 
@@ -10,6 +13,17 @@ require(__DIR__ . '/Exception.php');
 require(__DIR__ . '/PHPMailer.php');
 /* SMTP class, needed if you want to use SMTP. */
 require(__DIR__ . '/SMTP.php');
+
+
+if ( isset( $_SESSION['user_id'] ) ) {
+    $style1 = "style='display:none;'";
+    $style2 = NULL;
+} else {
+    // Redirect them to the login page
+     $style1 = NULL;
+     $style2 = "style='display:none;'";
+}   
+
      $message = "initial text ";
     if(isset($_POST["submit"]))
     {
@@ -101,28 +115,30 @@ require(__DIR__ . '/SMTP.php');
         <div class="menu-logo">
             <div class="navbar-brand">
                 
-                <span class="navbar-caption-wrap"> <a href = "index.html"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a>  </span>
+                <span class="navbar-caption-wrap"> <a href="index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="index.html">
+                    <a class="nav-link link text-black display-4" href="index.php">
                         
                         Home</a>
                 
                 <li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="about.html">
+                    <a class="nav-link link text-black display-4" href="about.php">
                         
                         About Us
                     </a>
                 </li><li class="nav-item"><a class="nav-link link text-black display-4" href="contact.php">Contact</a></li>
-                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="login.html">Login</a></li>
-                <li class="nav-item"><a class="nav-link link text-black display-4" href="signup.html">Sign Up</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="login.php" <?php echo $style1;?>>Login</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="signup.html" <?php echo $style1;?>>Sign Up</a></li>
+                 <li class="nav-item"><a class="nav-link link text-black display-4" href="logout.php" <?php echo $style2;?> >Log Out</a></li>
             </ul>
             
         </div>
     </nav>
 </section>
+
 
 <section class="mbr-section content5 cid-ruXJBlWiZf mbr-parallax-background" id="content5-1o">
 

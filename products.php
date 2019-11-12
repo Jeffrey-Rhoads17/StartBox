@@ -5,11 +5,13 @@
 session_start();
 
 if ( isset( $_SESSION['user_id'] ) ) {
-    // Grab user data from the database using the user_id
-    // Let them access the "logged in only" pages
+    $style1 = "style='display:none;'";
+    $style2 = NULL;
 } else {
     // Redirect them to the login page
-     header('Location: login.html');
+     $style1 = NULL;
+     $style2 = "style='display:none;'";
+     header('Location: login.php');
 }
 ?>
 
@@ -45,11 +47,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
   
 </head>
 <body>
-  <section class="menu cid-ruOMQmoi9r" once="menu" id="menu1-t">
-
-    
-
-    <section class="menu cid-ruNsw1yRec" once="menu" id="menu1-0">
+   <section class="menu cid-ruNsw1yRec" once="menu" id="menu1-0">
 
     
 
@@ -65,23 +63,24 @@ if ( isset( $_SESSION['user_id'] ) ) {
         <div class="menu-logo">
             <div class="navbar-brand">
                 
-                <span class="navbar-caption-wrap"><a href = "index.html"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
+                <span class="navbar-caption-wrap"> <a href="index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="index.html">
+                    <a class="nav-link link text-black display-4" href="index.php">
                         
                         Home</a>
                 
                 <li class="nav-item">
-                    <a class="nav-link link text-black display-4" href="about.html">
+                    <a class="nav-link link text-black display-4" href="about.php">
                         
                         About Us
                     </a>
                 </li><li class="nav-item"><a class="nav-link link text-black display-4" href="contact.php">Contact</a></li>
-                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="login.html">Login</a></li>
-                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="signup.html">Sign Up</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="login.php" <?php echo $style1;?>>Login</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="signup.html" <?php echo $style1;?>>Sign Up</a></li>
+                 <li class="nav-item"><a class="nav-link link text-black display-4" href="logout.php" <?php echo $style2;?> >Log Out</a></li>
             </ul>
             
         </div>
@@ -128,7 +127,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>Standard Party Package</b></p>
           <p>This package comes with a wonderful selection of party supplies to get any type of party off the ground, no matter what occasion.</p>
           <p>Starting at <b>$20</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
 
         </div>
       </div>
@@ -138,7 +137,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>Birthday Party Package</b></p>
           <p>Whether you are planning a princess party for your 5 year old daughter or throwing a 21st birthday party rager, this package has you covered.</p>
           <p>Starting at <b>$30</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
         </div>
       </div>
       <div class="w3-third w3-container">
@@ -147,7 +146,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>Garden Party Package</b></p>
           <p>With a vast selection of outdoor supplies, this package pairs great with planning outdoor garden parties during warm Summer days.</p>
           <p>Starting at <b>$50</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
         </div>
       </div>
     </div>
@@ -160,7 +159,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>Themed Party Package</b></p>
           <p>This package is ideal for event planners that want to spice up their events with cool and interesting themed decoration for most upcoming holidays.</p>
           <p>Starting at <b>$25</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
         </div>
       </div>
       <div class="w3-third w3-container w3-margin-bottom">
@@ -169,7 +168,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>College Party Package</b></p>
           <p>From college football tailgates to dance filled pregames, this package ensures that your event will be the hottest event on the block.</p>
           <p>Starting at <b>$25</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
         </div>
       </div>
       <div class="w3-third w3-container">
@@ -178,7 +177,7 @@ if ( isset( $_SESSION['user_id'] ) ) {
           <p><b>Celebration Party Package</b></p>
           <p>This package caters to event planners that wish to celebrate big milestones in either a friends or family type setting.</p>
           <p>Starting at <b>$40</b> per box</p>
-          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.html">Purchase</a></div>
+          <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="purchase.php">Purchase</a></div>
         </div>
       </div>
     </div>
