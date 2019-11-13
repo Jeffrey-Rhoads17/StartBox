@@ -239,7 +239,7 @@ require(__DIR__ . '\SMTP.php');
                             <div class="col-md-6  form-group" data-for="phone">
                                 <input type="text" name="phone" placeholder="Phone" data-form-field="Phone" required="required" class="form-control input display-7" id="phone-form4-13">
                             </div>
-                            <div data-for="email" class="col-md-12  form-group">
+                            <div data-for="email" class="col-md-12  form-group" data-validate = "Valid email is required: ex@abc.xyz">
                                 <input type="email" name="email" placeholder="Email" data-form-field="Email" class="form-control input display-7" required="required" id="email-form4-13">
                             </div>
                             <div data-for="message" class="col-md-12  form-group">
