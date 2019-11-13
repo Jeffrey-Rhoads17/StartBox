@@ -53,7 +53,7 @@ if ($valid){
         $mail->AddAddress("$email_address");
         $mail->Send();
    
-    header('Location: index.html');
+    header('Location: index.php');
 }else {
     header('Location: login2.php');
 }
