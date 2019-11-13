@@ -1,7 +1,8 @@
+
 <?php
 // Always start this first
 session_start();
-
+$show = "style='display:none;'";
 
 if ( ! empty( $_POST ) ) {
     if ( isset( $_POST['email'] ) && isset( $_POST['pass'] ) ) {
@@ -15,6 +16,9 @@ if ( ! empty( $_POST ) ) {
     	if ( password_verify( $_POST['pass'], $user->password ) ) {
     		$_SESSION['user_id'] = $user->password;
     		header('Location: products.php');
+    	}
+    	else{
+    		$show =NULL;
     	}
     }
 }
@@ -100,17 +104,22 @@ if ( ! empty( $_POST ) ) {
                         About Us
                     </a>
                 </li><li class="nav-item"><a class="nav-link link text-black display-6" href="contact.php">Contact</a></li>
-                </li><li class="nav-item"><a class="nav-link link text-black display-6" href="login.html">Login</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-6" href="login.php">Login</a></li>
                </li><li class="nav-item"><a class="nav-link link text-black display-6" href="signup.html">Sign Up</a></li>
             </ul>
             
         </div>
     </nav>
 </section>
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form action="login.php" method = "post" class="login100-form validate-form">
+					<span class="login100-form-title p-b-33" <?php echo $show;?>>
+						 Error Incorrect Username or Password
+						
+					</span>
 					<span class="login100-form-title p-b-33">
 						Account Login
 					</span>
