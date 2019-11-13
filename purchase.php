@@ -4,12 +4,14 @@
 // Always start this first
 session_start();
 
+        
 if ( isset( $_SESSION['user_id'] ) ) {
-    // Grab user data from the database using the user_id
-    // Let them access the "logged in only" pages
+    $style1 = "style='display:none;'";
+    $style2 = NULL;
 } else {
-    // Redirect them to the login page
-    header('Location: index.html');
+    $style1 = NULL;
+     $style2 = "style='display:none;'";
+     header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -44,57 +46,45 @@ if ( isset( $_SESSION['user_id'] ) ) {
     <section class="menu cid-ruOMQmoi9r" once="menu" id="menu1-t">
 
 
+  <section class="menu cid-ruNsw1yRec" once="menu" id="menu1-0">
 
-        <section class="menu cid-ruNsw1yRec" once="menu" id="menu1-0">
+    
 
-
-
-            <nav
-                class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-                <div class="menu-logo">
-                    <div class="navbar-brand">
-
-                        <span class="navbar-caption-wrap"><a href="index.html"> <img class="center"
-                                    src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a>
-                        </span>
-                    </div>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                        <li class="nav-item">
-                            <a class="nav-link link text-black display-4" href="index.html">
-
-                                Home</a>
-
-                        <li class="nav-item">
-                            <a class="nav-link link text-black display-4" href="about.html">
-
-                                About Us
-                            </a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link link text-black display-4"
-                                href="contact.html">Contact</a></li>
-                        </li>
-                        <li class="nav-item"><a class="nav-link link text-black display-4" href="login.html">Login</a>
-                        </li>
-                        </li>
-                        <li class="nav-item"><a class="nav-link link text-black display-4" href="signup.html">Sign
-                                Up</a></li>
-                    </ul>
-
-                </div>
-            </nav>
-        </section>
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                
+                <span class="navbar-caption-wrap"> <a href="index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
+                    <a class="nav-link link text-black display-4" href="index.php">
+                        
+                        Home</a>
+                
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-4" href="about.php">
+                        
+                        About Us
+                    </a>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4" href="contact.php">Contact</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="login.php" <?php echo $style1;?>>Login</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-black display-4"  href="signup.html" <?php echo $style1;?>>Sign Up</a></li>
+                 <li class="nav-item"><a class="nav-link link text-black display-4" href="logout.php" <?php echo $style2;?> >Log Out</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+</section>
 
         <section class="mbr-section content5 cid-ruXCVKDreY mbr-parallax-background" id="content5-1f">
 
@@ -155,14 +145,21 @@ if ( isset( $_SESSION['user_id'] ) ) {
                     </div>
                     
                 </div>
-                <form>
+                <form id = "form"  onsubmit="return show()">
                         <label for="choose">Enter Promo Code</label>
                         <input id="choose" name="i_like" required pattern="WAHOOWA">
-                        <button data-toggle="modal" data-target="#exampleModal">Submit</button>
+                        <button type ="submit">Submit</button>
+                         
                 </form>
+
                 <!-- Button trigger modal -->
- 
-      
+                 
+                    <script>
+                    function show(){
+                        $('#exampleModal').modal('show')
+                        return false;
+                    }
+            </script>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

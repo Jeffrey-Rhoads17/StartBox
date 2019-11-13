@@ -1,3 +1,25 @@
+<?php
+// Always start this first
+session_start();
+
+$
+if ( ! empty( $_POST ) ) {
+    if ( isset( $_POST['email'] ) && isset( $_POST['pass'] ) ) {
+
+    	$db_connection = pg_connect("host=ec2-54-235-92-244.compute-1.amazonaws.com port=5432 dbname=d8ml5c7u4acibm user=jzyjvbcryijgfg password=01a082153a927515cb3d2724ec7a13ee0a2491042a18a45940a8ae7a5dc74b52");
+		$email_address = $_POST['email'];
+		$password = $_POST['pass'];
+		$check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
+    	$user = pg_fetch_object($check)	
+    	// Verify user password and set $_SESSION
+    	if ( password_verify( $_POST['password'], $user->password ) ) {
+    		$_SESSION['user_id'] = $user->ID;
+    		header('Location: products.html');
+    	}
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +110,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form">
+				<form action="login.html" method = "post" class="login100-form validate-form">
 					<span class="login100-form-title p-b-33">
 						Account Login
 					</span>
@@ -106,7 +128,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							Sign in
 						</button>
 					</div>

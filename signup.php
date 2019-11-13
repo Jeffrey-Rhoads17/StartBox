@@ -55,7 +55,7 @@ if ($valid){
    
     header('Location: index.html');
 }else {
-    header('Location: login2.html');
+    header('Location: login2.php');
 }
 
 

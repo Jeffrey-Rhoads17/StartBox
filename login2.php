@@ -1,3 +1,29 @@
+
+<?php
+// Always start this first
+session_start();
+$show = "style='display:none;'";
+
+if ( ! empty( $_POST ) ) {
+    if ( isset( $_POST['email'] ) && isset( $_POST['pass'] ) ) {
+
+    	$db_connection = pg_connect("host=ec2-54-235-92-244.compute-1.amazonaws.com port=5432 dbname=d8ml5c7u4acibm user=jzyjvbcryijgfg password=01a082153a927515cb3d2724ec7a13ee0a2491042a18a45940a8ae7a5dc74b52");
+		$email_address = $_POST['email'];
+		$password = $_POST['pass'];
+		$check=pg_query($db_connection,"select * from sitecustomers where email_address='$email_address'");
+    	$user = pg_fetch_object($check);	
+    	// Verify user password and set $_SESSION
+    	if ( password_verify( $_POST['pass'], $user->password ) ) {
+    		$_SESSION['user_id'] = $user->password;
+    		header('Location: products.php');
+    	}
+    	else{
+    		$show =NULL;
+    	}
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +89,7 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 
-                <span class="navbar-caption-wrap"><a href = "index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
+                 <span class="navbar-caption-wrap"> <a href = "index.php"> <img class="center" src="assets/images/logo.png" style="width:150px;height:50px;" alt="" title=""> </a> </span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -79,149 +105,69 @@
                     </a>
                 </li><li class="nav-item"><a class="nav-link link text-black display-6" href="contact.php">Contact</a></li>
                 </li><li class="nav-item"><a class="nav-link link text-black display-6" href="login.php">Login</a></li>
-                </li><li class="nav-item"><a class="nav-link link text-black display-6" href="signup.php">Sign Up</a></li>
+               </li><li class="nav-item"><a class="nav-link link text-black display-6" href="signup.html">Sign Up</a></li>
             </ul>
             
         </div>
     </nav>
 </section>
+
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form action="signup.php" method="post" class="login100-form validate-form">
-					<span class="login100-form-title p-b-33">
-						Account Sign Up
-					</span>
-					<span class="login100-form-header p-b-20">
-						Email Address
-					</span>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+				<form action="login.php" method = "post" class="login100-form validate-form">
+					<span class="login100-form-title p-b-33" <?php echo $show;?>>
+						 Error Incorrect Username or Password
 						
+					</span>
 
-						<input class="input100" type="email" name="email" placeholder="Enter your Email">
+					<span class="login100-form-title p-b-33">
+						 An account under that Email already exists! Try logging in below
+						
+					</span>
+
+					<span class="login100-form-title p-b-33">
+						Account Login
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
-					<span class="login100-form-header p-b-20">
-						Password
-					</span>
+
 					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="password" placeholder="Enter your Password">
+						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
-					<span class="login100-form-header p-b-20">
-						Confirm Password
-					</span>
-					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="confirm password" placeholder="Confirm your Password">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					<span class="login100-form-header p-b-20">
-						Full Name
-					</span>
-					<div class="wrap-input100 rs1 validate-input" data-validate="Name is required">
-						<input class="input100" type="text" name="name" placeholder="Enter your First Name and Last Name">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					<span class="login100-form-header p-b-20">
-						Street Address
-					</span>
-					<div class="wrap-input100 rs1 validate-input" data-validate="Street Name is required">
-						<input class="input100" type="text" name="street" placeholder="Enter your Street Address">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					<span class="login100-form-header p-b-20">
-					 City
-					</span>
-					<div class="wrap-input100 rs1 validate-input" data-validate="City is required">
-						<input class="input100" type="text" name="city" title="City must not contain any numbers" pattern = "^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" placeholder="Enter your City">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					<span class="login100-form-header p-b-20">
-						State
-					</span>
-					<div class="form-group">
-	
-	<div class="wrap-input100 rs1 validate-input" data-validate="State is required">
-		<select required class="form-control" id="state" name="state">
-			<option value="">None</option>
-			<option value="AK">Alaska</option>
-			<option value="AL">Alabama</option>
-			<option value="AR">Arkansas</option>
-			<option value="AZ">Arizona</option>
-			<option value="CA">California</option>
-			<option value="CO">Colorado</option>
-			<option value="CT">Connecticut</option>
-			<option value="DC">District of Columbia</option>
-			<option value="DE">Delaware</option>
-			<option value="FL">Florida</option>
-			<option value="GA">Georgia</option>
-			<option value="HI">Hawaii</option>
-			<option value="IA">Iowa</option>
-			<option value="ID">Idaho</option>
-			<option value="IL">Illinois</option>
-			<option value="IN">Indiana</option>
-			<option value="KS">Kansas</option>
-			<option value="KY">Kentucky</option>
-			<option value="LA">Louisiana</option>
-			<option value="MA">Massachusetts</option>
-			<option value="MD">Maryland</option>
-			<option value="ME">Maine</option>
-			<option value="MI">Michigan</option>
-			<option value="MN">Minnesota</option>
-			<option value="MO">Missouri</option>
-			<option value="MS">Mississippi</option>
-			<option value="MT">Montana</option>
-			<option value="NC">North Carolina</option>
-			<option value="ND">North Dakota</option>
-			<option value="NE">Nebraska</option>
-			<option value="NH">New Hampshire</option>
-			<option value="NJ">New Jersey</option>
-			<option value="NM">New Mexico</option>
-			<option value="NV">Nevada</option>
-			<option value="NY">New York</option>
-			<option value="OH">Ohio</option>
-			<option value="OK">Oklahoma</option>
-			<option value="OR">Oregon</option>
-			<option value="PA">Pennsylvania</option>
-			<option value="PR">Puerto Rico</option>
-			<option value="RI">Rhode Island</option>
-			<option value="SC">South Carolina</option>
-			<option value="SD">South Dakota</option>
-			<option value="TN">Tennessee</option>
-			<option value="TX">Texas</option>
-			<option value="UT">Utah</option>
-			<option value="VA">Virginia</option>
-			<option value="VT">Vermont</option>
-			<option value="WA">Washington</option>
-			<option value="WI">Wisconsin</option>
-			<option value="WV">West Virginia</option>
-			<option value="WY">Wyoming</option>
-		</select>
-	</div>
-</div>
-					<span class="login100-form-header p-b-20">
-						Zip Code
-					</span>
-					<div class="wrap-input100 rs1 validate-input" data-validate="Zip Code is required">
-						<input class="input100" type="text" title = "zip code must be 5 digits" pattern = "[0-9]{5}" name="zip" placeholder="Enter your Zip Code">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
+
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn" type = "submit">
-							Sign Up
+						<button class="login100-form-btn" type="submit">
+							Sign in
 						</button>
 					</div>
 
-				
+					<div class="text-center p-t-45 p-b-4">
+						<span class="txt1">
+							Forgot
+						</span>
 
-					
+						<a href="#" class="txt2 hov1">
+							Username / Password?
+						</a>
+					</div>
+
+					<div class="text-center">
+						<span class="txt1">
+							Create an account?
+						</span>
+
+						<a href="signup.html" class="txt2 hov1">
+							Sign up
+						</a>
+					</div>
 				</form>
 			</div>
 		</div>
